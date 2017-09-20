@@ -35,4 +35,12 @@ h4 {
 
 .wrapper {
     text-align: center;
+    margin-top: 10px;
+}
+
+#userName {
+  margin-top: 10px;
+}
+#userPassword {
+  margin-top: 10px;
 }
