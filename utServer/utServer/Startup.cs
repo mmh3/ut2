@@ -30,20 +30,28 @@ namespace utServer.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddCors();  //mmh - ???
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        //public void Configure(IApplicationBuilder app, IHostingEnvironment env)
-        //{
-        //    //if (env.IsDevelopment())
-        //    //{
-        //    //    app.UseDeveloperExceptionPage();
-        //    //}
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+			//if (env.IsDevelopment())
+			//{
+			//    app.UseDeveloperExceptionPage();
+			//}
 
-        //    //app.UseMvc();
-        //}
+			//app.UseMvc();
+			HttpConfiguration config = new HttpConfiguration();
 
-        public void ConfigureOAuth(IAppBuilder app)
+			ConfigureOAuth(app);
+
+			//WebApiConfig.Register(config);
+			app.UseCors((Microsoft.Owin.Cors.CorsOptions.AllowAll));
+			//app.UseWebApi(config);
+        }
+
+        public void ConfigureOAuth(IApplicationBuilder app)
         {
 			OAuthAuthorizationServerOptions OAuthServerOptions = new OAuthAuthorizationServerOptions()
 			{
