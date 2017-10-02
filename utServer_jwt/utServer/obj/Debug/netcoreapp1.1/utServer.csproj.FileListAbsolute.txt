@@ -1,0 +1,10 @@
+c:\src\git\tools\ut2\utServer\utServer\bin\Debug\netcoreapp1.1\utServer.deps.json
+c:\src\git\tools\ut2\utServer\utServer\bin\Debug\netcoreapp1.1\utServer.runtimeconfig.json
+c:\src\git\tools\ut2\utServer\utServer\bin\Debug\netcoreapp1.1\utServer.runtimeconfig.dev.json
+c:\src\git\tools\ut2\utServer\utServer\bin\Debug\netcoreapp1.1\utServer.dll
+c:\src\git\tools\ut2\utServer\utServer\obj\Debug\netcoreapp1.1\utServer.csprojResolveAssemblyReference.cache
+c:\src\git\tools\ut2\utServer\utServer\obj\Debug\netcoreapp1.1\utServer.csproj.CoreCompileInputs.cache
+c:\src\git\tools\ut2\utServer\utServer\obj\Debug\netcoreapp1.1\utServer.AssemblyInfo.cs
+c:\src\git\tools\ut2\utServer\utServer\bin\Debug\netcoreapp1.1\utServer.pdb
+c:\src\git\tools\ut2\utServer\utServer\obj\Debug\netcoreapp1.1\utServer.dll
+c:\src\git\tools\ut2\utServer\utServer\obj\Debug\netcoreapp1.1\utServer.pdb
