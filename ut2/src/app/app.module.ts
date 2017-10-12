@@ -1,22 +1,27 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './auth/login/login.component';
 import { AppRoutingModule } from "./app-routing.module";
 import { HeaderComponent } from './header/header.component';
+import { UtService } from './ut.service';
+import { TestComponent } from './test/test.component';
+import { DayComponent } from './day/day.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    HeaderComponent
+    HeaderComponent,
+    TestComponent,
+    DayComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpModule
   ],
-  providers: [],
+  providers: [UtService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
