@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,8 +25,26 @@ namespace utServer_WindowsAuth
         {
             services.Configure<IISOptions>(options => options.ForwardWindowsAuthentication = true);
 
+            // Setup Cors
+            services.AddCors(o => o.AddPolicy("CorsPolicy", builder =>
+            {
+                //builder.WithOrigins("http://localhost:4200/")
+                //       .AllowAnyMethod()
+                //       .AllowAnyHeader()
+                //       .AllowCredentials();
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader()
+                       .AllowCredentials();
+            }));
+
             // Add framework services.
             services.AddMvc();
+
+            // Setup access to appsettings.json
+            services.AddOptions();
+            var connectionStrings = Configuration.GetSection("ConnectionStrings");
+            services.Configure<ConnectionStrings>(connectionStrings);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,6 +52,8 @@ namespace utServer_WindowsAuth
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+            app.UseCors("CorsPolicy");
 
             app.UseMvc();
         }
