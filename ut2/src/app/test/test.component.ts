@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {UtService} from '../ut.service'
+import { UtService } from '../ut.service'
 import { Observable } from "rxjs/Observable";
-import { UtEntry } from '../ut-entry.model';
+import "rxjs/add/Observable/of";
+import { UtEntry } from '../models/ut-entry.model';
+import { UtDay } from "../models/ut-day.model";
 
 @Component({
   selector: 'app-test',
@@ -11,39 +13,43 @@ import { UtEntry } from '../ut-entry.model';
 export class TestComponent implements OnInit {
 
     public test: Observable<any>;
-    public utEntries: Array<UtEntry>;
+    public days = {};
+    public daysArray: Observable<Array<any>>;
+    objectKeys = Object.keys;
 
   constructor(private utService: UtService) { }
 
   ngOnInit() {
-      //this.test = this.utService.getUtEntries();
 
       this.utService.getUtEntries()
           .map((result: Array<any>) => {
-              let entries: Array<UtEntry> = [];
+              var days = {};
+              var daysArray = [];
               if (result) {
                   result.forEach((e) => {
-                      entries.push(new UtEntry(+e.time_tracker_uid, +e.project_number, new Date(e.entry_date), +e.work_type, +e.minutes, new Date(e.date_created), e.created_by, new Date(e.date_last_modified), e.last_maintained_by, +e.employee_id, +e.action_type, e.comments, e.bad_work));
+                      if (days[e.entry_date] === undefined) {
+                          var ent = new UtEntry(+e.time_tracker_uid, +e.project_number, new Date(e.entry_date), +e.work_type, +e.minutes, new Date(e.date_created), e.created_by, new Date(e.date_last_modified), e.last_maintained_by, +e.employee_id, +e.action_type, e.comments, e.bad_work);
+                          days[e.entry_date] = new UtDay(new Date(e.entry_date), ent);
+                      }
+                      else {
+                          days[e.entry_date].addEntry(new UtEntry(+e.time_tracker_uid, +e.project_number, new Date(e.entry_date), +e.work_type, +e.minutes, new Date(e.date_created), e.created_by, new Date(e.date_last_modified), e.last_maintained_by, +e.employee_id, +e.action_type, e.comments, e.bad_work));
+                      }
                   });
-              }
-              return entries;
-          })
-          .subscribe(entries => this.utEntries = entries);
-          
 
-        //let options = new RequestOptions({ withCredentials: true });
-        //return this.http.get('http://localhost:2301/api/ut/utEntries', options)
-        //    .map(
-        //    (response: Response) => {
-        //        let res: Array<any> = response.json() || {};
-        //        let entries: Array<UtEntry> = [];
-        //        if (res) {
-        //            res.forEach((e) => {
-        //                entries.push(new UtEntry(e.time_tracker_uid, e.project_number, e.entry_date, e.work_type, e.minutes, e.date_created, e.created_by, e.date_last_modified, e.last_maintained_by, e.employee_id, e.action_type, e.comments, e.bad_work));
-        //            })
-        //        }
-        //        return entries;
-        //    }
-        //    ).subscribe();
+                  // Create an array we can use in the template
+                  for (var objectKey in days) {
+                      daysArray.push(days[objectKey]);
+                  }
+                  // This sorting isn't working right for some reason? It messes up the last day in the sort so instead we're just sorting in the query.
+                  //daysArray.sort(function (a, b) {
+                  //    a = new Date(a.entryDate);
+                  //    b = new Date(b.entryDate);
+                  //    return b - a;
+                  //})
+
+              }
+              return Observable.of(daysArray);
+          })
+          .subscribe(daysArray => this.daysArray = daysArray);
   }
 }

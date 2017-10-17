@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { UtEntry } from '../ut-entry.model';
+import { UtEntry } from '../models/ut-entry.model';
+import { UtDay } from "../models/ut-day.model";
 
 @Component({
   selector: 'app-day',
@@ -7,11 +8,17 @@ import { UtEntry } from '../ut-entry.model';
   styleUrls: ['./day.component.css']
 })
 export class DayComponent implements OnInit {
-  @Input() entry: UtEntry;
+    @Input() day: UtDay;
 
   constructor() { }
 
   ngOnInit() {
-  }
+      //var angular: any;
 
+      //if (this.day.entries) {
+      //    angular.foreach(this.day.entries, function(value, key){
+      //        console.log(value.projectNo);
+      //    })
+      //}
+  }
 }

@@ -1,3 +1,3 @@
-<p>
-  Project#: {{entry.projectNo}}
-</p>
+  <ul>
+    <li *ngFor="let entry of day.entries">{{entry.entryDate | date}} | {{entry.projectNo}} | {{entry.minutes}}</li>
+  </ul>

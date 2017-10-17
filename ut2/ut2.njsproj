@@ -37,6 +37,10 @@
     <Content Include="src\favicon.ico" />
     <Content Include="src\tsconfig.app.json" />
     <Content Include="src\tsconfig.spec.json" />
+    <TypeScriptCompile Include="src\app\models\ut-day.model.ts" />
+    <TypeScriptCompile Include="src\app\models\ut-entry.model.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\app\ut.service.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
@@ -67,6 +71,7 @@
     <Folder Include="src\app\auth" />
     <Folder Include="src\app\auth\login" />
     <Folder Include="src\app\header" />
+    <Folder Include="src\app\models\" />
     <Folder Include="src\assets" />
     <Folder Include="src\environments" />
     <Folder Include="ut2" />
