@@ -42,7 +42,8 @@ namespace utServer_WindowsAuth.Controllers
             string query = @"SELECT     time_tracker.* 
                               FROM      time_tracker
                               INNER JOIN  users ON users.dt_user_uid = time_tracker.employee_id
-                              WHERE     users.id = @user_id";
+                              WHERE     users.id = @user_id
+                              ORDER BY  time_tracker.entry_date";
 
             return Json(db.Query<UtEntry>(query, new { user_id = _userName }).ToArray<UtEntry>());
             //return Json("test");
