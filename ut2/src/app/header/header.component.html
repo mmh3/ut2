@@ -11,7 +11,8 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-          {{ userName | async }}
+          <!--{{ userName | async }}-->
+          {{ (state | async).userName }}
           <!--this.http.get('http://localhost:2301/api/ut/username').subscribe(data => {this.results = data['results'];});-->
         <li>
 

@@ -1,22 +1,33 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
-//import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import { Store } from '@ngrx/store';
+
+import * as UtActions from './redux/ut.actions'
+
 
 @Injectable()
 export class UtService {
-    constructor(private http: Http) { }
+    constructor(private http: Http, private store: Store<{ utStore: { userName: string } }>) { }
 
     getUserName() {
-        let headers = new Headers();//{ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers, withCredentials: true });
-        return this.http.get('http://localhost:2301/api/ut/username', options)
-            .map(
-              (response: Response) => {
-                return response.json();
-              }
-            )
+        this.store.dispatch(new UtActions.GetUsername());
+        //this.store.dispatch(new UtActions.GetUsername());
+        return this.store.select('utStore');
+
+
+
+
+
+        //let headers = new Headers();//{ 'Content-Type': 'application/json' });
+        //let options = new RequestOptions({ headers: headers, withCredentials: true });
+        //return this.http.get('http://localhost:2301/api/ut/username', options)
+        //    .map(
+        //      (response: Response) => {
+        //        return response.json();
+        //      }
+        //    )
     }
 
     getUtEntries(): Observable<any> {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UtService } from '../ut.service'
 import { Observable } from "rxjs/Observable";
+
+import { UtService } from '../ut.service'
 
 @Component({
   selector: 'app-header',
@@ -9,12 +10,12 @@ import { Observable } from "rxjs/Observable";
 })
 export class HeaderComponent implements OnInit {
 
-  public userName: Observable<any>;
+  public state: Observable<any>;
 
   constructor(private utService: UtService) { }
 
   ngOnInit() {
-    this.userName = this.utService.getUserName();
+      this.state = this.utService.getUserName();
   }
 
 }
