@@ -1,14 +1,4 @@
 
-  <!--{{test | async | json}}-->
-<!--  <app-day *ngFor="let entry of utEntries" [entry]="entry"></app-day>-->
 <p>
   <app-day *ngFor="let day of daysArray | async" [day]="day"></app-day>
 </p>
-
-
-  <!--<app-day *ngFor="let day of objectKeys(days)" [day] ="day"></app-day>-->
-
-
-  <!--<ul>
-    <li *ngFor="let entry of objectKeys(days)">{{entry.entries && entry.entries[0].projectNo | async}}</li>
-  </ul>-->

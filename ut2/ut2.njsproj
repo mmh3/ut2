@@ -41,6 +41,15 @@
     <TypeScriptCompile Include="src\app\models\ut-entry.model.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="src\app\redux\ut.actions.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\app\redux\ut.effects.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="src\app\redux\ut.reducer.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="src\app\ut.service.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
@@ -72,6 +81,7 @@
     <Folder Include="src\app\auth\login" />
     <Folder Include="src\app\header" />
     <Folder Include="src\app\models\" />
+    <Folder Include="src\app\redux\" />
     <Folder Include="src\assets" />
     <Folder Include="src\environments" />
     <Folder Include="ut2" />
