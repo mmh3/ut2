@@ -8,6 +8,7 @@ import { UtService } from '../ut.service'
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
+
 export class HeaderComponent implements OnInit {
 
   public state: Observable<any>;
@@ -17,5 +18,4 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
       this.state = this.utService.getUserName();
   }
-
 }

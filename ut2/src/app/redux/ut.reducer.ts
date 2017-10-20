@@ -3,7 +3,7 @@ import * as UtActions from './ut.actions';
 
 const initialState = {
     userName: null,
-    entries: []
+    days: []
 };
 
 export function utReducer(state = initialState, action: UtActions.UtActions) {
@@ -15,10 +15,10 @@ export function utReducer(state = initialState, action: UtActions.UtActions) {
                 userName: action.payload
             }
 
-        case UtActions.GET_ENTRIES:
+        case UtActions.SET_ENTRIES:
             return {
                 ...state,
-                entries: []
+                days: action.payload
             }
 
         default:

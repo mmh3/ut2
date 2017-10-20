@@ -1,4 +1,4 @@
 
 <p>
-  <app-day *ngFor="let day of daysArray | async" [day]="day"></app-day>
+  <app-day *ngFor="let day of (state| async).days" [day]="day"></app-day>
 </p>
