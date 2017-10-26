@@ -1,7 +1,9 @@
 ﻿using Dapper;
+using Dapper.Contrib.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -39,6 +41,7 @@ namespace utServer_WindowsAuth.Controllers
         {
             IDbConnection db = new SqlConnection(_connectionStrings.Value.UtConnection);
 
+            //TODO: Define the columns that are being selected
             string query = @"SELECT     time_tracker.* 
                               FROM      time_tracker
                               INNER JOIN  users ON users.dt_user_uid = time_tracker.employee_id
@@ -53,6 +56,31 @@ namespace utServer_WindowsAuth.Controllers
         public JsonResult/*string*/ GetUserName()
         {
             return Json(_userName);
+        }
+
+        [HttpPost("utEntries")]
+        public JsonResult PostUtEntries([FromBody] UtEntry[] entries)
+        {
+            IDbConnection db = new SqlConnection(_connectionStrings.Value.UtConnection);
+            List<UtEntry> updatedEntries = new List<UtEntry>();
+
+            //TODO: Validate object property values
+            foreach (UtEntry entry in entries)
+            {
+                if (entry.time_tracker_uid > 0)
+                {
+                    db.Update(entry);
+                }
+                else
+                {
+                    db.Insert(entry);
+                }
+
+                updatedEntries.Add(entry);
+            }
+
+            //return CreatedAtRoute("utEntries", new { }, entries);
+            return Json(updatedEntries);
         }
     }
 }
