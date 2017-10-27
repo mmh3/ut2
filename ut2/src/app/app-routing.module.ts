@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from "@angular/router";
-import { TestComponent } from "./test/test.component";
+import { ListViewComponent } from "./list-view/list-view.component";
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/test', pathMatch: 'full'},
-  { path: 'test', component: TestComponent }
+  { path: '', redirectTo: '/list', pathMatch: 'full'},
+  { path: 'list', component: ListViewComponent }
 ]
 
 @NgModule({

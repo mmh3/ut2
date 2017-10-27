@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from "./app-routing.module";
 import { HeaderComponent } from './header/header.component';
 import { UtService } from './ut.service';
-import { TestComponent } from './test/test.component';
+import { ListViewComponent } from './list-view/list-view.component';
 import { DayComponent } from './day/day.component';
 import { utReducer } from './redux/ut.reducer';
 import { UtEffects } from './redux/ut.effects';
@@ -17,7 +17,7 @@ import { UtEffects } from './redux/ut.effects';
   declarations: [
     AppComponent,
     HeaderComponent,
-    TestComponent,
+    ListViewComponent,
     DayComponent
   ],
   imports: [
