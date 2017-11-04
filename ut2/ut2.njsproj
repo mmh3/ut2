@@ -26,8 +26,10 @@
     <Content Include="package.json" />
     <Content Include="src\app\day\day.component.css" />
     <Content Include="src\app\day\day.component.html" />
-    <Content Include="src\app\test\test.component.css" />
-    <Content Include="src\app\test\test.component.html" />
+    <Content Include="src\app\entry\entry.component.css" />
+    <Content Include="src\app\entry\entry.component.html" />
+    <Content Include="src\app\list-view\list-view.component.css" />
+    <Content Include="src\app\list-view\list-view.component.html" />
     <Content Include="tsconfig.json" />
     <Content Include="tslint.json" />
     <Content Include="README.md" />
@@ -42,6 +44,7 @@
     <Content Include="src\tsconfig.app.json" />
     <Content Include="src\tsconfig.spec.json" />
     <TypeScriptCompile Include="src\app\day\day.component.ts" />
+    <TypeScriptCompile Include="src\app\entry\entry.component.ts" />
     <TypeScriptCompile Include="src\app\models\ut-day.model.ts" />
     <TypeScriptCompile Include="src\app\models\ut-entry.model.ts">
       <SubType>Code</SubType>
@@ -55,7 +58,7 @@
     <TypeScriptCompile Include="src\app\redux\ut.reducer.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="src\app\test\test.component.ts" />
+    <TypeScriptCompile Include="src\app\list-view\list-view.component.ts" />
     <TypeScriptCompile Include="src\app\ut.service.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
@@ -86,10 +89,11 @@
     <Folder Include="src\app\auth" />
     <Folder Include="src\app\auth\login" />
     <Folder Include="src\app\day\" />
+    <Folder Include="src\app\entry\" />
     <Folder Include="src\app\header" />
     <Folder Include="src\app\models\" />
     <Folder Include="src\app\redux\" />
-    <Folder Include="src\app\test\" />
+    <Folder Include="src\app\list-view\" />
     <Folder Include="src\assets" />
     <Folder Include="src\environments" />
     <Folder Include="ut2" />

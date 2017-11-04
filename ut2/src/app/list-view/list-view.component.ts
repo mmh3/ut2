@@ -14,6 +14,7 @@ export class ListViewComponent implements OnInit {
   constructor(private utService: UtService) { }
 
   ngOnInit() {
+    this.utService.setMonth({ 'month': (new Date()).getUTCMonth() + 1, 'year':(new Date()).getUTCFullYear() });
     this.state = this.utService.getUtEntries();
   }
 }

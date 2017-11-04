@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 
 import * as UtActions from './redux/ut.actions'
 import { UtDay } from "./models/ut-day.model";
+import { UtEntry } from "./models/ut-entry.model";
 
 
 @Injectable()
@@ -30,5 +31,15 @@ export class UtService {
         //        return response.json();
         //      }
         //    )
+    }
+
+    setMonth(arg: {'month':number, 'year':number}) {
+      this.store.dispatch(new UtActions.SetMonth(arg));
+      return this.store.select('utStore');
+    }
+
+    saveEntry(entry: UtEntry) {
+      this.store.dispatch(new UtActions.SaveEntry(entry));
+      return this.store.select('utStore');
     }
 }

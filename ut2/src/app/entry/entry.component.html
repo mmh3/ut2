@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <form [formGroup]="entryForm" (ngSubmit)="onSubmit()" (keyup.enter)="onEnter()">
+        <div class="col-xs-12 col-sm-2">
+          <input type="text"
+                 id="projectNo"
+                 formControlName="projectNo"
+                 class="form-control"
+                 placeholder="Project Number"/>
+        </div>
+        <div class="col-xs-12 col-sm-2">
+          <select formControlName="workType" class="form-control">
+            <option *ngFor="let type of workTypes" [ngValue]="type.value">{{type.display}}</option>
+          </select>
+        </div>
+        <div class="col-xs-12 col-sm-2">
+          <!--<input type="text"
+                 id="workDate"
+                 formControlName="workDate"
+                 class="form-control" />-->
+          <input type="date"
+                 [ngModel]="entry.entryDate"
+                 value="{{entry.entryDate | date: 'yyyy-MM-dd' }}"
+                 id="workDate"
+                 formControlName="workDate"
+                 class="form-control" />
+        </div>
+        <div class="col-xs-12 col-sm-2">
+          <select formControlName="actionType" class="form-control">
+            <option *ngFor="let type of actionTypes" [ngValue]="type.value">{{type.display}}</option>
+          </select>
+        </div>
+        <div class="col-xs-12 col-sm-2">
+          <input type="text"
+                 id="minutes"
+                 formControlName="minutes"
+                 class="form-control"
+                 placeholder="minutes" />
+        </div>
+        <div class="col-xs-12 col-sm-10" style="padding-top: 4px;">
+          <input type="text"
+                 id="comments"
+                 formControlName="comments"
+                 class="form-control"
+                 placeholder="Comments" />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

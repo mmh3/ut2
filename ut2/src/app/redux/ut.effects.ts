@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
+import { Action } from '@ngrx/store';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/mergeMap';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
@@ -26,7 +27,7 @@ export class UtEffects {
                 type: UtActions.SET_USERNAME,
                 payload: response
             };
-        });
+    });
 
     @Effect()
     getEntries = this.actions$
@@ -42,7 +43,7 @@ export class UtEffects {
         var days = {};
         var daysArray = [];
         if (result) {
-          console.log(result);
+          //console.log(result);
           result.forEach((e) => {
             if (days[e.entry_date] === undefined) {
               var ent = new UtEntry(+e.time_tracker_uid, +e.project_number, new Date(e.entry_date), +e.work_type, +e.minutes, new Date(e.date_created), e.created_by, new Date(e.date_last_modified), e.last_maintained_by, +e.employee_id, +e.action_type, e.comments, e.bad_work);
@@ -53,10 +54,11 @@ export class UtEffects {
             }
           });
 
-          // Create an array we can use in the template
-          for (var objectKey in days) {
-            daysArray.push(days[objectKey]);
-          }
+          //// Create an array we can use in the template
+          //for (var objectKey in days) {
+          //  daysArray.push(days[objectKey]);
+          //}
+
           // This sorting isn't working right for some reason? It messes up the last day in the sort so instead we're just sorting in the query.
           //daysArray.sort(function (a, b) {
           //    a = new Date(a.entryDate);
@@ -65,13 +67,26 @@ export class UtEffects {
           //})
 
         }
-        return daysArray;
+        return days;
       })
       .map((response: any) => {
         return {
           type: UtActions.SET_ENTRIES,
           payload: response
         };
+      });
+
+    @Effect()
+    saveEntry = this.actions$
+      .ofType(UtActions.SAVE_ENTRY)
+      .switchMap((action: UtActions.UtActions) => {
+        if (action.type === UtActions.SAVE_ENTRY) {
+          let options = new RequestOptions({ withCredentials: true });
+          return this.http.post('http://localhost:2301/api/ut/utEntries', action.payload, options);
+        }
+      })
+      .map((response: Response) => {
+        return response.json();
       });
 
     constructor(private actions$: Actions, private http: Http){}
